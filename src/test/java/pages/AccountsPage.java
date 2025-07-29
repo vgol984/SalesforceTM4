@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AccountsPage extends BasePage{
 
@@ -11,7 +12,14 @@ public class AccountsPage extends BasePage{
         super(driver);
     }
 
-    public void clickNewButton(){
+    public NewAccountPage clickNewButton(){
         driver.findElement(BUTTON_NEW).click();
+        return new NewAccountPage(driver);
+    }
+
+    @Override
+    public AccountsPage isPageOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='New']")));
+        return this;
     }
 }

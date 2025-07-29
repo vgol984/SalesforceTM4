@@ -3,6 +3,8 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
     private final By LOGIN_FIELD = By.id("username");
@@ -13,13 +15,21 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
-    public void login(String user, String password){
+    @Override
+    public LoginPage isPageOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
+        return this;
+    }
+
+    public MainPage login(String user, String password){
         driver.findElement(LOGIN_FIELD).sendKeys(user);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
+        return new MainPage(driver);
     }
 }
