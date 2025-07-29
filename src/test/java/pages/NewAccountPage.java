@@ -45,6 +45,7 @@ public class NewAccountPage extends BasePage{
         return this;
     }
 
+    @Override
     public NewAccountPage isPageOpened(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='SaveEdit']")));
         return this;

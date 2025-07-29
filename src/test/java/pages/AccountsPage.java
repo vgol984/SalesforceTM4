@@ -17,6 +17,7 @@ public class AccountsPage extends BasePage{
         return new NewAccountPage(driver);
     }
 
+    @Override
     public AccountsPage isPageOpened(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='New']")));
         return this;

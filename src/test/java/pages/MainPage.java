@@ -22,6 +22,7 @@ public class MainPage extends BasePage{
         return new AccountsPage(driver);
     }
 
+    @Override
     public MainPage isPageOpened(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title='App Launcher']")));
         return this;
